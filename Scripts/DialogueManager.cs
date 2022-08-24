@@ -35,12 +35,31 @@ public class DialogueManager : MonoBehaviour {
         }
 
         PortraitBoxAnimator.SetBool("IsOpen", true);
-        PortraitImageAnimator.SetBool("IsOpen", true);
+        UpdatePortraitImage(dialogue);
         DialogueBoxAnimator.SetBool("IsOpen", true);
         DialogueTextAnimator.SetBool("IsOpen", true);
 
-        Portrait.sprite = dialogue.Portrait;
         DisplayNextSentence();
+    }
+
+    void UpdatePortraitImage(Dialogue dialogue) {
+        switch(dialogue.Portrait) {
+            default:
+                PortraitImageAnimator.SetInteger("Portrait", 0);
+                Debug.LogWarning(
+                    "Portrait \"" + dialogue.Portrait + "\" of dialogue \"" + dialogue.DialogueName + "\" is not found."
+                );
+                break;
+            case "Dialogue":
+                PortraitImageAnimator.SetInteger("Portrait", 1);
+                break;
+            case "Player":
+                PortraitImageAnimator.SetInteger("Portrait", 2);
+                break;
+            case "Friend":
+                PortraitImageAnimator.SetInteger("Portrait", 3);
+                break;
+        }
     }
 
     public void DisplayNextSentence() {
@@ -71,7 +90,7 @@ public class DialogueManager : MonoBehaviour {
         FindObjectOfType<PlayerMovement>().MovementSpeed = 5f;
 
         PortraitBoxAnimator.SetBool("IsOpen", false);
-        PortraitImageAnimator.SetBool("IsOpen", false);
+        PortraitImageAnimator.SetInteger("Portrait", 0);
         DialogueBoxAnimator.SetBool("IsOpen", false);
         DialogueTextAnimator.SetBool("IsOpen", false);
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 [System.Serializable]
 public class Dialogue {
-    public Sprite Portrait;
+    public string Portrait;
     //This is just for ease of reference
     public string DialogueName;
     [TextArea(3, 10)]

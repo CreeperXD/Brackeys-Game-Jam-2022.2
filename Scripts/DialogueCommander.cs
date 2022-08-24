@@ -14,6 +14,7 @@ public class DialogueCommander : MonoBehaviour {
     public DialogueTrigger MovementHint;
 
     IEnumerator Start() {
+        FindObjectOfType<PlayerMovement>().MovementSpeed = 0f;
         yield return new WaitForSeconds(5);
         StateCounter++;
     }
@@ -48,6 +49,7 @@ public class DialogueCommander : MonoBehaviour {
             case 13:
                 StateCounter++;
                 MovementHint.TriggerDialogue();
+                // FindObjectOfType<AudioManager>().PlaySound("Test");
                 break;
 
         }
