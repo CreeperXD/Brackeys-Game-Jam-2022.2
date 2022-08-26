@@ -94,6 +94,6 @@ public class DialogueManager : MonoBehaviour {
         DialogueBoxAnimator.SetBool("IsOpen", false);
         DialogueTextAnimator.SetBool("IsOpen", false);
 
-        FindObjectOfType<DialogueCommander>().StateCounter++;
+        FindObjectOfType<InitialDialogues>().StateCounter++;
     }
 }
