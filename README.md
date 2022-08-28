@@ -1,2 +1,2 @@
 # Brackeys-Game-Jam-2022.2
-Uncover
+These are the scripts used in my jam game
