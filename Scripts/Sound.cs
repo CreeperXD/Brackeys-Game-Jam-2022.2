@@ -5,6 +5,7 @@ using UnityEngine.Audio;
 public class Sound {
     public string Name;
     public AudioClip audioClip;
+    public AudioMixerGroup MixerGroup;
     [Range(0f, 1f)]
     public float Volume;
     [Range(0.1f, 3f)]

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
+    public GameObject ClickCirclePrefab;
     public float MovementSpeed = 5f;
     public Rigidbody2D Player;
     public new Camera camera;
@@ -16,6 +17,8 @@ public class PlayerMovement : MonoBehaviour {
 
         if(Input.GetMouseButtonDown(0)) {
             TargetPosition = camera.ScreenToWorldPoint(Input.mousePosition);
+            GameObject ClickCircle = Instantiate(ClickCirclePrefab, TargetPosition, Quaternion.identity);
+            Destroy(ClickCircle, 1);
         }
     }
 

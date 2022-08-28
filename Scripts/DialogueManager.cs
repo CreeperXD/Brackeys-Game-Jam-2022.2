@@ -9,17 +9,18 @@ public class DialogueManager : MonoBehaviour {
     public Image Portrait;
     public TextMeshProUGUI DialogueText;
     public GameObject ContinueButton;
-    [RangeAttribute(1f, 50f)]
-    public float TypingSpeed = 25f;
+
+    Settings settings;
 
     public Animator PortraitBoxAnimator;
     public Animator PortraitImageAnimator;
     public Animator DialogueBoxAnimator;
     public Animator DialogueTextAnimator;
 
-    //Start is called before the first frame update
     void Start() {
+        ContinueButton.SetActive(false);
         Sentences = new Queue<string>();
+        settings = FindObjectOfType<Settings>();
     }
 
     public void StartDialogue(Dialogue dialogue) {
@@ -79,7 +80,8 @@ public class DialogueManager : MonoBehaviour {
         DialogueText.text = "";
         foreach(char Letter in Sentence.ToCharArray()) {
             DialogueText.text += Letter;
-            yield return new WaitForSeconds(1 / TypingSpeed);
+            FindObjectOfType<AudioManager>().PlaySound("Button hover");
+            yield return new WaitForSeconds(1 / settings.textSpeed);
         }
 
         ContinueButton.SetActive(true);
@@ -94,6 +96,6 @@ public class DialogueManager : MonoBehaviour {
         DialogueBoxAnimator.SetBool("IsOpen", false);
         DialogueTextAnimator.SetBool("IsOpen", false);
 
-        FindObjectOfType<InitialDialogues>().StateCounter++;
+        FindObjectOfType<DialogueCommander>().StateCounter++;
     }
 }
